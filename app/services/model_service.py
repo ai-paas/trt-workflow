@@ -17,9 +17,9 @@ class ModelService:
         db: Session, model_create_form: model.LiteModelForm
     ) -> dict[str, any]:
         """
-        ptq를 적용한 모델 경량화
+        trt를 적용한 모델 경량화
         """
-        ptq_docker_image_path = ModelLiteMapper.Bert_TRT.value
+        trt_docker_image_path = ModelLiteMapper.Bert_TRT.value
 
         # 작업 완료시 server에 요청을 보낼 url
         response_server_url = SETTINGS.SERVER_IP
@@ -32,7 +32,7 @@ class ModelService:
         def trt_workflow():
             return dsl.ContainerSpec(
                 # 사용할 도커이미지의 주소 및 태그
-                image=ptq_docker_image_path,
+                image=trt_docker_image_path,
                 # 실행할 커맨드
                 command=[
                     "pipenv",
